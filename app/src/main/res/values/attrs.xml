@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="IngredientChips" format="reference" />
+    <attr name="IngredientEditChips" format="reference" />
+    <attr name="IngredientAddedChips" format="reference" />
+    <attr name="RecipeStepTools" format="reference" />
+    <attr name="FilterChips" format="reference" />
+</resources>

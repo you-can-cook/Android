@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.youcancook.gobong.ui.my.OthersProfileViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.my.other.OthersActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:titleEnabled="false">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                    app:navigationIcon="@drawable/selector_toggle"
+                    app:title="@{vm.user.nickname}"
+                    app:titleCentered="true"
+                    app:titleTextAppearance="@style/TextAppearance.GoBong.Bold20"
+                    tools:text="쩝쩝박사">
+
+                    <Button
+                        android:id="@+id/followingButton"
+                        style="@style/ThemeOverlay.GoBong.Button.Follow"
+                        isFollowSelected="@{vm.user.followed}"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="16dp"
+                        android:text="팔로우" />
+                </com.google.android.material.appbar.MaterialToolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/profileImageView"
+                    setProfileImageUrl="@{vm.user.profileUrl}"
+                    android:layout_width="88dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="27dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/default_profile_img" />
+
+                <TextView
+                    android:id="@+id/recipeNumberTextView"
+                    style="@style/TextAppearance.GoBong.SemiBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="22dp"
+                    android:text="@{vm.user.recipe}"
+                    app:layout_constraintEnd_toStartOf="@id/followerNumberTextView"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profileImageView"
+                    tools:text="5" />
+
+                <TextView
+                    android:id="@+id/followerNumberTextView"
+                    style="@style/TextAppearance.GoBong.SemiBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.user.follower}"
+                    app:layout_constraintEnd_toStartOf="@id/followingNumberTextView"
+                    app:layout_constraintStart_toEndOf="@id/recipeNumberTextView"
+                    app:layout_constraintTop_toTopOf="@id/recipeNumberTextView"
+                    tools:text="137" />
+
+                <TextView
+                    android:id="@+id/followingNumberTextView"
+                    style="@style/TextAppearance.GoBong.SemiBold16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{vm.user.following}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/followerNumberTextView"
+                    app:layout_constraintTop_toTopOf="@id/recipeNumberTextView"
+                    tools:text="486" />
+
+                <TextView
+                    android:id="@+id/recipeTextView"
+                    style="@style/TextAppearance.GoBong.Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="레시피"
+                    app:layout_constraintEnd_toEndOf="@id/recipeNumberTextView"
+                    app:layout_constraintStart_toStartOf="@id/recipeNumberTextView"
+                    app:layout_constraintTop_toBottomOf="@id/recipeNumberTextView" />
+
+                <TextView
+                    android:id="@+id/followerTextView"
+                    style="@style/TextAppearance.GoBong.Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="팔로워"
+                    app:layout_constraintEnd_toEndOf="@id/followerNumberTextView"
+                    app:layout_constraintStart_toStartOf="@id/followerNumberTextView"
+                    app:layout_constraintTop_toBottomOf="@id/followerNumberTextView" />
+
+                <TextView
+                    android:id="@+id/followingTextView"
+                    style="@style/TextAppearance.GoBong.Regular14"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="팔로잉"
+                    app:layout_constraintEnd_toEndOf="@id/followingNumberTextView"
+                    app:layout_constraintStart_toStartOf="@id/followingNumberTextView"
+                    app:layout_constraintTop_toBottomOf="@id/followingNumberTextView" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    setRecyclerViewVisible="@{vm.recipes}"
+                    submitData="@{vm.recipes}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="42dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipeTextView"
+                    tools:listitem="@layout/item_grid_card" />
+
+                <ImageView
+                    android:id="@+id/emptyImageView"
+                    setEmptyImageVisible="@{vm.recipes}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="205dp"
+                    android:src="@drawable/icon_empty_my"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipeTextView" />
+
+                <TextView
+                    style="@style/TextAppearance.GoBong.Regular14"
+                    setEmptyTextVisible="@{vm.recipes}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:gravity="center"
+                    android:text="피드에 게시된 레시피가 없습니다.\n먼저 레시피를 추가해보세요!"
+                    android:textColor="@color/charcoal_color"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/emptyImageView" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

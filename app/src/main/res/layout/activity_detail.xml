@@ -1,0 +1,400 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.youcancook.gobong.ui.detail.DetailViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.detail.DetailActivity">
+
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appBarLayout"
+            style="@style/Widget.MaterialComponents.AppBarLayout.Surface"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:liftOnScroll="true">
+
+            <com.google.android.material.appbar.CollapsingToolbarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                app:titleEnabled="false">
+
+                <com.google.android.material.appbar.MaterialToolbar
+                    android:id="@+id/toolbar"
+                    style="@style/TextAppearance.GoBong.SemiBold16"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layout_collapseMode="pin"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed|snap"
+                    app:navigationIcon="@drawable/icon_left_arrow"
+                    app:title="@{vm.cardInfo.title}"
+                    app:titleCentered="true"
+                    app:titleTextAppearance="@style/TextAppearance.GoBong.SemiBold16"
+                    tools:text="편의점 꿀조합 마크 정식">
+
+                    <ImageView
+                        android:id="@+id/bookmarkImageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/selector_bookmark" />
+                </com.google.android.material.appbar.MaterialToolbar>
+
+            </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nestedScrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <ImageView
+                    android:id="@+id/profileImageView"
+                    style="@style/TextAppearance.GoBong.SemiBold16"
+                    setProfileImageUrl="@{vm.cardInfo.user.profileUrl}"
+                    android:layout_width="32dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintDimensionRatio="1:1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:src="@drawable/default_profile_img" />
+
+                <TextView
+                    android:id="@+id/nicknameTextView"
+                    style="@style/TextAppearance.GoBong.SemiBold12"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    android:text="@{vm.cardInfo.user.nickname}"
+                    app:layout_constraintBottom_toBottomOf="@id/profileImageView"
+                    app:layout_constraintEnd_toStartOf="@id/followingButton"
+                    app:layout_constraintStart_toEndOf="@id/profileImageView"
+                    app:layout_constraintTop_toTopOf="@id/profileImageView"
+                    tools:text="쩝쩝박사" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/followingButton"
+                    style="@style/Widget.GoBong.Button.Follow"
+                    isFollowSelected="@{vm.cardInfo.user.followed}"
+                    isFollowVisible="@{vm.cardInfo.user.notMine}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="팔로잉"
+                    app:layout_constraintBottom_toBottomOf="@id/profileImageView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/profileImageView" />
+
+                <ImageView
+                    android:id="@+id/thumbnailImageView"
+                    setImageUrl="@{vm.cardInfo.thumbnailUrl}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:adjustViewBounds="true"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/profileImageView"
+                    tools:src="@drawable/example_img" />
+
+                <ImageView
+                    android:id="@+id/timeImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="28dp"
+                    android:src="@drawable/icon_time"
+                    app:layout_constraintEnd_toStartOf="@id/toolImageView"
+                    app:layout_constraintHorizontal_chainStyle="spread"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/thumbnailImageView" />
+
+                <TextView
+                    android:id="@+id/timeTextView"
+                    style="@style/TextAppearance.GoBong.SemiBold8"
+                    recipeStepTime="@{vm.cardInfo.time}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="@color/charcoal_color"
+                    app:layout_constraintEnd_toEndOf="@id/timeImageView"
+                    app:layout_constraintStart_toStartOf="@id/timeImageView"
+                    app:layout_constraintTop_toBottomOf="@id/timeImageView"
+                    tools:text="5분" />
+
+                <ImageView
+                    android:id="@+id/toolImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_tool"
+                    app:layout_constraintEnd_toStartOf="@id/levelImageView"
+                    app:layout_constraintStart_toEndOf="@id/timeImageView"
+                    app:layout_constraintTop_toTopOf="@id/timeImageView" />
+
+                <TextView
+                    android:id="@+id/toolTextView"
+                    style="@style/TextAppearance.GoBong.SemiBold8"
+                    toolText="@{vm.cardInfo.tools}"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:textColor="@color/charcoal_color"
+                    app:layout_constraintEnd_toEndOf="@id/toolImageView"
+                    app:layout_constraintStart_toStartOf="@id/toolImageView"
+                    app:layout_constraintTop_toBottomOf="@id/toolImageView"
+                    tools:text="전자레인지\n+3" />
+
+                <ImageView
+                    android:id="@+id/levelImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_level"
+                    app:layout_constraintEnd_toStartOf="@id/StarImageView"
+                    app:layout_constraintStart_toEndOf="@id/toolImageView"
+                    app:layout_constraintTop_toTopOf="@id/timeImageView" />
+
+                <TextView
+                    android:id="@+id/levelTextView"
+                    style="@style/TextAppearance.GoBong.SemiBold8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@{vm.cardInfo.level}"
+                    android:textColor="@color/charcoal_color"
+                    app:layout_constraintEnd_toEndOf="@id/levelImageView"
+                    app:layout_constraintStart_toStartOf="@id/levelImageView"
+                    app:layout_constraintTop_toBottomOf="@id/levelImageView"
+                    tools:text="쉬워요" />
+
+                <ImageView
+                    android:id="@+id/StarImageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/icon_star"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/levelImageView"
+                    app:layout_constraintTop_toTopOf="@id/timeImageView" />
+
+                <TextView
+                    android:id="@+id/starTextView"
+                    style="@style/TextAppearance.GoBong.SemiBold8"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    android:text="@{vm.cardInfo.star}"
+                    android:textColor="@color/charcoal_color"
+                    app:layout_constraintEnd_toEndOf="@id/StarImageView"
+                    app:layout_constraintStart_toStartOf="@id/StarImageView"
+                    app:layout_constraintTop_toBottomOf="@id/StarImageView"
+                    tools:text="4.7공기" />
+
+                <TextView
+                    android:id="@+id/recipeIntroTextView"
+                    setTextVisible="@{vm.cardInfo.description}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="25dp"
+                    android:text="@{vm.cardInfo.description}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/toolTextView"
+                    tools:text="간단하지만 진짜 맛있는 편의점 최고의 꿀조합" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/ingredientGroup"
+                    ingredientChips="@{vm.cardInfo.ingredients}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recipeIntroTextView" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    submitData="@{vm.recipes}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ingredientGroup"
+                    tools:itemCount="1"
+                    tools:listitem="@layout/item_recipe" />
+
+                <com.google.android.material.divider.MaterialDivider
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="30dp"
+                    android:background="@color/gray1"
+                    app:layout_constraintBottom_toTopOf="@id/addReviewConstraintLayout"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerView" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/addReviewConstraintLayout"
+                    setReviewVisible="@{vm.starCount}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerView"
+                    tools:visibility="gone">
+
+                    <TextView
+                        android:id="@+id/reviewTextView"
+                        style="@style/TextAppearance.GoBong.SemiBold16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="레시피는 어떠셨나요?"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/reviewSubTextView"
+                        style="@style/TextAppearance.GoBong.Regular10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center"
+                        android:text="레시피에 따라 음식을 조리하여 드셔보신 후\n고봉밥으로 후기를 남겨주세요!"
+                        android:textColor="@color/charcoal_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/reviewTextView" />
+
+                    <Button
+                        android:id="@+id/reviewButton"
+                        style="@style/Widget.GoBong.Button.Review"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="72dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="21dp"
+                        android:text="리뷰 작성하기"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/reviewSubTextView" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/editReviewConstraintLayout"
+                    setEditReviewVisible="@{vm.starCount}"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@id/recyclerView">
+
+                    <TextView
+                        android:id="@+id/reviewedTextView"
+                        style="@style/TextAppearance.GoBong.SemiBold16"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:text="내가 남긴 고봉밥"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/star1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/selector_star"
+                        app:layout_constraintEnd_toStartOf="@+id/star2"
+                        app:layout_constraintHorizontal_chainStyle="packed"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/reviewedTextView" />
+
+                    <ImageView
+                        android:id="@+id/star2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/selector_star"
+                        app:layout_constraintEnd_toStartOf="@+id/star3"
+                        app:layout_constraintStart_toEndOf="@id/star1"
+                        app:layout_constraintTop_toTopOf="@id/star1" />
+
+                    <ImageView
+                        android:id="@+id/star3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/selector_star"
+                        app:layout_constraintEnd_toStartOf="@+id/star4"
+                        app:layout_constraintStart_toEndOf="@id/star2"
+                        app:layout_constraintTop_toTopOf="@id/star1" />
+
+                    <ImageView
+                        android:id="@+id/star4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:src="@drawable/selector_star"
+                        app:layout_constraintEnd_toStartOf="@+id/star5"
+                        app:layout_constraintStart_toEndOf="@id/star3"
+                        app:layout_constraintTop_toTopOf="@id/star1" />
+
+                    <ImageView
+                        android:id="@+id/star5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/selector_star"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/star4"
+                        app:layout_constraintTop_toTopOf="@id/star1" />
+
+                    <TextView
+                        android:id="@+id/editReviewButton"
+                        style="@style/TextAppearance.GoBong.SemiBold12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="38dp"
+                        android:gravity="center"
+                        android:paddingBottom="14dp"
+                        android:text="리뷰 수정하기"
+                        android:textColor="@color/primary_color"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/star1" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>

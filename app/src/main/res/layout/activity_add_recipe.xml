@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.youcancook.gobong.ui.addRecipe.AddRecipeViewModel" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/rootLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            tools:context=".ui.addRecipe.AddRecipeActivity">
+
+            <ImageView
+                android:id="@+id/closeButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                android:src="@drawable/icon_close"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/uploadTextView"
+                style="@style/TextAppearance.GoBong.SemiBold16"
+                setTextVisible="@{vm.titleInput}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
+                android:text="게시"
+                android:textColor="@color/primary_color"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/thumbnailTextView"
+                style="@style/TextAppearance.GoBong.SemiBold12"
+                setNecessaryTextView="@{@string/recipe_add_thumbnail_text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="12dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/closeButton"
+                tools:text="대표사진*" />
+
+            <ImageView
+                android:id="@+id/thumbnailImageView"
+                setImageByteArray="@{vm.thumbnailByteArray}"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="4dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/thumbnail_add_placeholder"
+                app:layout_constraintDimensionRatio="16:9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/thumbnailTextView" />
+
+            <TextView
+                android:id="@+id/titleTextView"
+                style="@style/TextAppearance.GoBong.SemiBold12"
+                setNecessaryTextView="@{@string/recipe_add_title_text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="24dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/thumbnailImageView"
+                tools:text="제목*" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/titleTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/thumbnailImageView"
+                app:layout_constraintStart_toStartOf="@id/thumbnailImageView"
+                app:layout_constraintTop_toBottomOf="@id/titleTextView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/titleTextInputEditText"
+                    style="@style/TextAppearance.GoBong.Regular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="제목을 입력하세요"
+                    android:text="@={vm.titleInput}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/descriptionTextView"
+                style="@style/TextAppearance.GoBong.SemiBold12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                android:text="@string/recipe_add_description_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/titleTextInputLayout" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/descriptionTextInputLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:hintEnabled="false"
+                app:layout_constraintEnd_toEndOf="@id/thumbnailImageView"
+                app:layout_constraintStart_toStartOf="@id/thumbnailImageView"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTextView">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/descriptionTextInputEditText"
+                    style="@style/TextAppearance.GoBong.Regular14"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="레시피에 대한 소개를 입력하세요"
+                    android:text="@={vm.descriptionInput}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/ingredientTextView"
+                style="@style/TextAppearance.GoBong.SemiBold12"
+                setNecessaryTextView="@{@string/recipe_add_ingredient_text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/descriptionTextInputLayout"
+                tools:text="재료*" />
+
+            <com.google.android.flexbox.FlexboxLayout
+                android:id="@+id/ingredientGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                app:flexWrap="wrap"
+                app:layout_constraintEnd_toEndOf="@id/thumbnailImageView"
+                app:layout_constraintStart_toStartOf="@id/thumbnailImageView"
+                app:layout_constraintTop_toBottomOf="@id/ingredientTextView">
+
+                <EditText
+                    android:id="@+id/addIngredientEditText"
+                    style="@style/Widget.GoBong.EditText.IngredientAdd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:text="@={vm.ingredientInput}"
+                    android:visibility="gone" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/addIngredientButton"
+                    style="@style/Widget.GoBong.Chip.Add"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="추가하기" />
+            </com.google.android.flexbox.FlexboxLayout>
+
+            <TextView
+                android:id="@+id/levelTextView"
+                style="@style/TextAppearance.GoBong.SemiBold12"
+                setNecessaryTextView="@{@string/recipe_add_level_text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ingredientGroup"
+                tools:text="난이도*" />
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/levelGroup"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:focusableInTouchMode="true"
+                app:layout_constraintEnd_toEndOf="@id/thumbnailImageView"
+                app:layout_constraintStart_toStartOf="@id/thumbnailImageView"
+                app:layout_constraintTop_toBottomOf="@id/levelTextView"
+                app:singleSelection="true">
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.GoBong.Toggle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="쉬워요" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.GoBong.Toggle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="보통이에요" />
+
+                <com.google.android.material.button.MaterialButton
+                    style="@style/Widget.GoBong.Toggle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="어려워요" />
+
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <TextView
+                android:id="@+id/recipeTextView"
+                style="@style/TextAppearance.GoBong.SemiBold12"
+                setNecessaryTextView="@{@string/recipe_add_recipe_text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="28dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/levelGroup"
+                tools:text="레시피*" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                submitData="@{vm.recipes}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/recipeTextView"
+                tools:listitem="@layout/item_recipe_add" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+</layout>

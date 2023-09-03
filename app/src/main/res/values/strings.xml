@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">GoBong</string>
+
+    <string name="star_format">%.1f점</string>
+    <string name="recipe_add_thumbnail_text">대표사진*</string>
+    <string name="recipe_add_title_text">제목*</string>
+    <string name="recipe_add_description_text">소개</string>
+    <string name="recipe_add_ingredient_text">재료*</string>
+    <string name="recipe_add_level_text">난이도*</string>
+    <string name="recipe_add_recipe_text">레시피*</string>
+    <string name="recipe_add_time_text">소요시간*</string>
+
+    <string name="rotation_value">회전하려면 클릭하세요: %1$s</string>
+    <string name="save">저장</string>
+</resources>

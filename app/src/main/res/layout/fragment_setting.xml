@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/backArrowButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="15dp"
+        android:src="@drawable/icon_left_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/settingTextView"
+        style="@style/TextAppearance.GoBong.Bold20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="설정"
+        app:layout_constraintBottom_toBottomOf="@id/backArrowButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/backArrowButton" />
+
+    <TextView
+        android:id="@+id/myAccountTextView"
+        style="@style/TextAppearance.GoBong.SemiBold16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="내 계정"
+        app:layout_constraintStart_toStartOf="@id/backArrowButton"
+        app:layout_constraintTop_toBottomOf="@id/settingTextView" />
+
+    <ImageView
+        android:id="@+id/myAccountMoreImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/icon_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/myAccountTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/myAccountTextView" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/myAccountDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/myAccountTextView" />
+
+    <TextView
+        android:id="@+id/alarmTextView"
+        style="@style/TextAppearance.GoBong.SemiBold16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="알림"
+        app:layout_constraintStart_toStartOf="@id/backArrowButton"
+        app:layout_constraintTop_toBottomOf="@id/myAccountDivider" />
+
+    <ImageView
+        android:id="@+id/alarmMoreImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/icon_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/alarmTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/alarmTextView" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/alarmDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/alarmTextView" />
+
+    <TextView
+        android:id="@+id/logoutTextView"
+        style="@style/TextAppearance.GoBong.SemiBold16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="로그아웃"
+        app:layout_constraintStart_toStartOf="@id/backArrowButton"
+        app:layout_constraintTop_toBottomOf="@id/alarmDivider" />
+
+    <ImageView
+        android:id="@+id/logoutMoreImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/icon_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/logoutTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/logoutTextView" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/logoutDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/logoutTextView" />
+
+    <TextView
+        android:id="@+id/quitTextView"
+        style="@style/TextAppearance.GoBong.SemiBold16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="회원탈퇴"
+        app:layout_constraintStart_toStartOf="@id/backArrowButton"
+        app:layout_constraintTop_toBottomOf="@id/logoutDivider" />
+
+    <ImageView
+        android:id="@+id/quitMoreImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:src="@drawable/icon_right_arrow"
+        app:layout_constraintBottom_toBottomOf="@id/quitTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/quitTextView" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/quitTextViewDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="@color/gray1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/quitTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

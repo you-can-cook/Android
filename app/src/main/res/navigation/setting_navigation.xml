@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/setting_navigation"
+    app:startDestination="@id/settingFragment">
+
+    <fragment
+        android:id="@+id/settingFragment"
+        android:name="com.youcancook.gobong.ui.my.setting.SettingFragment"
+        android:label="SettingProfileFragment"
+        tools:layout="@layout/fragment_setting">
+        <action
+            android:id="@+id/action_settingFragment_to_settingProfileFragment"
+            app:destination="@id/settingProfileFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingFragment_to_settingNotificationFragment"
+            app:destination="@id/settingNotificationFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+        <action
+            android:id="@+id/action_settingFragment_to_settingQuitFragment"
+            app:destination="@id/settingQuitFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@android:anim/slide_in_left"
+            app:popExitAnim="@android:anim/slide_out_right" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/settingProfileFragment"
+        android:name="com.youcancook.gobong.ui.my.setting.SettingProfileFragment"
+        android:label="SettingProfileFragment"
+        tools:layout="@layout/fragment_setting_profile" />
+    <fragment
+        android:id="@+id/settingQuitFragment"
+        android:name="com.youcancook.gobong.ui.my.setting.SettingQuitFragment"
+        android:label="SettingQuitFragment"
+        tools:layout="@layout/fragment_setting_quit" />
+    <fragment
+        android:id="@+id/settingNotificationFragment"
+        android:name="com.youcancook.gobong.ui.my.setting.SettingNotificationFragment"
+        android:label="SettingNotificationFragment"
+        tools:layout="@layout/fragment_setting_notification" />
+</navigation>

@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.youcancook.gobong.ui.addRecipe.bottom.RecipeStepBottomViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/titleTextView"
+            style="@style/TextAppearance.GoBong.SemiBold16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="7dp"
+            android:text="단계별 레시피"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/deleteButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:src="@drawable/icon_delete"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@id/titleTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/titleTextView"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/photoTextView"
+            style="@style/TextAppearance.GoBong.SemiBold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
+            android:text="조리사진"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/titleTextView" />
+
+        <ImageView
+            android:id="@+id/photoImageView"
+            setImageByteArray="@{vm.thumbnailByteArray}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="4dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/thumbnail_add_placeholder"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/photoTextView" />
+
+        <TextView
+            android:id="@+id/toolsTextView"
+            style="@style/TextAppearance.GoBong.SemiBold12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            android:text="조리 도구"
+            app:layout_constraintStart_toStartOf="@id/photoImageView"
+            app:layout_constraintTop_toBottomOf="@id/photoImageView" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/toolsLayout"
+            selectedChips="@{vm.tools}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@id/photoImageView"
+            app:layout_constraintStart_toStartOf="@id/photoImageView"
+            app:layout_constraintTop_toBottomOf="@id/toolsTextView">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/showMoreToolsButton"
+                style="@style/Widget.GoBong.Chip.Add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="· · ·" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/timeTextView"
+            style="@style/TextAppearance.GoBong.SemiBold12"
+            setNecessaryTextView="@{@string/recipe_add_time_text}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="28dp"
+            app:layout_constraintStart_toStartOf="@id/photoImageView"
+            app:layout_constraintTop_toBottomOf="@id/toolsLayout"
+            tools:text="소요 시간*" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/minuteEditTextViewLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toStartOf="@id/photoImageView"
+            app:layout_constraintTop_toBottomOf="@id/timeTextView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/minuteEditTextView"
+                style="@style/TextAppearance.GoBong.Regular14"
+                time="@{vm.minute}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:textColor="@color/charcoal_color"
+                tools:text="00" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/minuteTextView"
+            style="@style/TextAppearance.GoBong.Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="분"
+            app:layout_constraintBottom_toBottomOf="@id/minuteEditTextViewLayout"
+            app:layout_constraintStart_toEndOf="@id/minuteEditTextViewLayout"
+            app:layout_constraintTop_toTopOf="@id/minuteEditTextViewLayout" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/secondEditTextViewLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            app:hintEnabled="false"
+            app:layout_constraintStart_toEndOf="@id/minuteTextView"
+            app:layout_constraintTop_toTopOf="@id/minuteEditTextViewLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/secondEditTextView"
+                style="@style/TextAppearance.GoBong.Regular14"
+                time="@{vm.second}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:inputType="numberDecimal"
+                android:textColor="@color/charcoal_color"
+                tools:text="00" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <TextView
+            android:id="@+id/secondTextView"
+            style="@style/TextAppearance.GoBong.Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:text="초"
+            app:layout_constraintBottom_toBottomOf="@id/minuteEditTextViewLayout"
+            app:layout_constraintStart_toEndOf="@id/secondEditTextViewLayout"
+            app:layout_constraintTop_toTopOf="@id/minuteEditTextViewLayout" />
+
+        <ImageView
+            android:id="@+id/resetTimeImageView"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="8dp"
+            android:src="@drawable/image_reset"
+            app:layout_constraintBottom_toBottomOf="@id/secondEditTextViewLayout"
+            app:layout_constraintStart_toEndOf="@id/secondTextView"
+            app:layout_constraintTop_toTopOf="@id/secondEditTextViewLayout" />
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/timeChipGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="@id/photoImageView"
+            app:layout_constraintTop_toBottomOf="@id/minuteEditTextViewLayout">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tenSecondChip"
+                style="@style/Widget.GoBong.Chip.Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+10초" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/thirtySecondChip"
+                style="@style/Widget.GoBong.Chip.Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+30초" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/oneMinuteChip"
+                style="@style/Widget.GoBong.Chip.Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+1분" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/fiveMinuteChip"
+                style="@style/Widget.GoBong.Chip.Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+5분" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/tenMinuteChip"
+                style="@style/Widget.GoBong.Chip.Time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+10분" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <TextView
+            android:id="@+id/descriptionTextView"
+            style="@style/TextAppearance.GoBong.Regular14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="28dp"
+            android:text="상세 설명"
+            app:layout_constraintStart_toStartOf="@id/photoImageView"
+            app:layout_constraintTop_toBottomOf="@id/timeChipGroup" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/descriptionEditTextViewLayout"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:hintEnabled="false"
+            app:layout_constraintEnd_toEndOf="@id/photoImageView"
+            app:layout_constraintStart_toStartOf="@id/photoImageView"
+            app:layout_constraintTop_toBottomOf="@id/descriptionTextView">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descriptionEditTextView"
+                style="@style/TextAppearance.GoBong.Regular14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="top"
+                android:hint="자세한 조리 과정을 입력하세요"
+                android:lines="5"
+                android:text="@={vm.descriptionInputText}"
+                android:textColor="@color/charcoal_color" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/completeButton"
+            style="@style/Widget.GoBong.Button.Big"
+            minute="@{vm.minute}"
+            second="@{vm.second}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="완료"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/photoImageView"
+            app:layout_constraintStart_toStartOf="@id/photoImageView"
+            app:layout_constraintTop_toBottomOf="@id/descriptionEditTextViewLayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

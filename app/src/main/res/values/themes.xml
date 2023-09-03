@@ -1,0 +1,35 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="Theme.GoBong" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primary_color</item>
+        <item name="colorPrimaryVariant">@color/primary_color</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/primary_color</item>
+        <item name="colorSecondaryVariant">@color/primary_color</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
+
+        <item name="IngredientChips">@style/Widget.GoBong.Chip</item>
+        <item name="IngredientEditChips">@style/Widget.GoBong.EditText.IngredientAdd</item>
+        <item name="IngredientAddedChips">@style/Widget.GoBong.Chip.Added</item>
+        <item name="RecipeStepTools">@style/Widget.GoBong.Chip.RecipeStepTool</item>
+        <item name="FilterChips">@style/Widget.GoBong.Chip.Filter</item>
+
+        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.GoBong.BottomSheetDialog</item>
+        <item name="materialButtonStyle">@style/Widget.GoBong.Button</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.GoBong.MaterialAlertDialog</item>
+        <item name="materialAlertDialogTitleTextStyle">
+            @style/MaterialAlertDialog.GoBong.Title.Text
+        </item>
+        <item name="sliderStyle">@style/Widget.GoBong.Slider</item>
+    </style>
+
+    <style name="Theme.GoBong.Login">
+        <item name="android:statusBarColor">@color/black</item>
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
+</resources>
